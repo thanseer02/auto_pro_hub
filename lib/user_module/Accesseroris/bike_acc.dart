@@ -19,7 +19,7 @@ class _bike_acState extends State<bike_ac> {
         leading: IconButton(onPressed: () {
           Navigator.pop(context);
         }, icon: Icon(CupertinoIcons.back,color: Colors.black45,size: 35,),),
-        title: Text('Bike',style: TextStyle(color: Colors.black45),),
+        title: Text('AUTO PRO HUB',style: TextStyle(color: Colors.black45),),
       ),
       body:  SafeArea(
         child: SingleChildScrollView(
@@ -77,7 +77,7 @@ class _bike_acState extends State<bike_ac> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Container(
-                                height: 70,
+                                height: 95,
                                 width: double.infinity,
                                 child: Image(image: AssetImage('assets/acc/ad/ad3.jpg'),fit: BoxFit.cover,),
                               ),

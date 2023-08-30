@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-class add_usedcar extends StatefulWidget {
-  const add_usedcar({super.key});
+class add_rentcar extends StatefulWidget {
+  const add_rentcar({super.key});
 
   @override
-  State<add_usedcar> createState() => _add_usedcarState();
+  State<add_rentcar> createState() => _add_rentcarState();
 }
 
-class _add_usedcarState extends State<add_usedcar> {
+class _add_rentcarState extends State<add_rentcar> {
   TextEditingController vnamectrl=TextEditingController();
   TextEditingController brandname=TextEditingController();
   TextEditingController fueltype=TextEditingController();
@@ -47,7 +47,7 @@ class _add_usedcarState extends State<add_usedcar> {
                   width: 350,
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.black
+                    color: Colors.black12
                   ),
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.black26
@@ -162,7 +162,6 @@ class _add_usedcarState extends State<add_usedcar> {
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
               // SizedBox(
               //   width: 340,
               //   child: TextFormField(
@@ -174,107 +173,106 @@ class _add_usedcarState extends State<add_usedcar> {
               //     ),
               //   ),
               // ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(
-                    child: DropdownButton<String>(
-                      value: _selectedItem,
-                      onChanged: (newValue) {
-                        setState(() {
-                          _selectedItem = newValue!;
-                        });
-                      },
-                      dropdownColor: Colors.white, // Change the background color here
-
-                      items: _items.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                            child: Text(value,style: TextStyle(color: Colors.black,fontSize: 16),),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 150,
-                    child: TextFormField(
-                      controller: cc,
-                      decoration: InputDecoration(
-                        hintText: 'Engine CC',
-                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                      ),
-                    ),
-                  ),
-
-                ],
-              ),
-              SizedBox(height: 10,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 120,
-                    child: TextFormField(
-                      controller: milege,
-                      decoration: InputDecoration(
-                        hintText: 'Milege',
-                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 140,
-                    child: TextFormField(
-                      controller: kmdriven,
-                      decoration: InputDecoration(
-                        hintText: 'KM Driven',
-                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                      ),
-                    ),
-                  ),
-
-
-                ],
-              ),
-              SizedBox(height: 10,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 120,
-                    child: TextFormField(
-                      controller: vyear,
-                      decoration: InputDecoration(
-                        hintText: 'Vehicle Year',
-                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 150,
-                    child: TextFormField(
-                      controller: ryear,
-                      decoration: InputDecoration(
-                        hintText: 'Registration Year',
-                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                      ),
-                    ),
-                  ),
-
-
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     Center(
+              //       child: DropdownButton<String>(
+              //         value: _selectedItem,
+              //         onChanged: (newValue) {
+              //           setState(() {
+              //             _selectedItem = newValue!;
+              //           });
+              //         },
+              //         dropdownColor: Colors.white, // Change the background color here
+              //
+              //         items: _items.map<DropdownMenuItem<String>>((String value) {
+              //           return DropdownMenuItem<String>(
+              //             value: value,
+              //             child: Padding(
+              //               padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              //               child: Text(value,style: TextStyle(color: Colors.black,fontSize: 16),),
+              //             ),
+              //           );
+              //         }).toList(),
+              //       ),
+              //     ),
+              //     SizedBox(
+              //       width: 150,
+              //       child: TextFormField(
+              //         controller: cc,
+              //         decoration: InputDecoration(
+              //           hintText: 'Engine CC',
+              //           enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+              //           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+              //         ),
+              //       ),
+              //     ),
+              //
+              //   ],
+              // ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     SizedBox(
+              //       width: 120,
+              //       child: TextFormField(
+              //         controller: milege,
+              //         decoration: InputDecoration(
+              //           hintText: 'Milege',
+              //           enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+              //           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+              //         ),
+              //       ),
+              //     ),
+              //     SizedBox(
+              //       width: 140,
+              //       child: TextFormField(
+              //         controller: kmdriven,
+              //         decoration: InputDecoration(
+              //           hintText: 'KM Driven',
+              //           enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+              //           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+              //         ),
+              //       ),
+              //     ),
+              //
+              //
+              //   ],
+              // ),
+              // SizedBox(height: 10,),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     SizedBox(
+              //       width: 120,
+              //       child: TextFormField(
+              //         controller: vyear,
+              //         decoration: InputDecoration(
+              //           hintText: 'Vehicle Year',
+              //           enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+              //           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+              //         ),
+              //       ),
+              //     ),
+              //     SizedBox(
+              //       width: 150,
+              //       child: TextFormField(
+              //         controller: ryear,
+              //         decoration: InputDecoration(
+              //           hintText: 'Registration Year',
+              //           enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+              //           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+              //         ),
+              //       ),
+              //     ),
+              //
+              //
+              //   ],
+              // ),
               SizedBox(height: 10,),
               SizedBox(
                 width: 340,
@@ -296,7 +294,7 @@ class _add_usedcarState extends State<add_usedcar> {
                      width: 150,
                      child: ElevatedButton(
                          style: ElevatedButton.styleFrom(
-                             backgroundColor: Colors.green.shade400,
+                             backgroundColor: Colors.teal,
                              shape: RoundedRectangleBorder(
                                  borderRadius: BorderRadius.circular(15))),
                          onPressed: (){},

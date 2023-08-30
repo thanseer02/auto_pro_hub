@@ -1,14 +1,15 @@
 import 'package:autoprohub/navbar.dart';
+import 'package:autoprohub/user_module/Accesseroris/detail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-class car extends StatefulWidget {
-  const car({super.key});
+class Car extends StatefulWidget {
+  const Car({super.key});
 
   @override
-  State<car> createState() => _carState();
+  State<Car> createState() => _CarState();
 }
 
-class _carState extends State<car> {
+class _CarState extends State<Car> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,38 +19,27 @@ class _carState extends State<car> {
         leading: IconButton(onPressed: () {
           Navigator.pop(context);
         }, icon: Icon(CupertinoIcons.back,color: Colors.black45,size: 35,),),
-        title: Text('Car',style: TextStyle(color: Colors.black45),),
+        title: Text('AUTO PRO HUB',style: TextStyle(color: Colors.black45),),
       ),
       body:  SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Stack(
-                children: [
-                  // Container(
-                  // height: 220,
-                  // decoration: BoxDecoration(
-                  // image: DecorationImage(image: AssetImage('assets/acc/acc.jpg'),fit: BoxFit.contain)
-                  // ),
-                  // ),
+              Padding(
+                padding: const EdgeInsets.only(left: 12,right: 12,top: 15),
+                child: TextField(
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white60,
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
 
-                  Padding(
-                    padding: const EdgeInsets.only(left: 12,right: 12,top: 15),
-                    child: TextField(
-                      decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white60,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-
-                          ),
-                          focusedBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                          prefixIcon: Icon(CupertinoIcons.search),
-                          hintText: 'Search here'
                       ),
-                    ),
-                  )
-                ],
+                      focusedBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                      prefixIcon: Icon(CupertinoIcons.search),
+                      hintText: 'Search here'
+                  ),
+                ),
               ),
               SizedBox(height: 20,),
               Container(
@@ -58,45 +48,63 @@ class _carState extends State<car> {
                   itemCount: 10,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                   itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                              color: Colors.black45
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>detail(
+                          name: '${index+1} item',
+                          price: '\$${index+1}0 ',
+                          image: 'assets/acc/ad/ad3.jpg',
+                          stock: ' Available',
+                          offer: '${index+2}0%',
+                          rate: '${index+2}00',
+                          discripton: 'industry. Lorem Ipsum has been the industrys standard dummy'
+                              ' text ever since the 1500s, when an unknown printer '
+                              'took a galley of type and scrambled it to make a type'
+                              ' software like Aldus PageMaker including versions of Lorem Ipsum.',
+                          rating: index+1, )));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 130,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                color: Colors.black45
+                            ),
                           ),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              height: 100,
-                              width: double.infinity,
-                              child: Image(image: AssetImage('assets/acc/ad/ad3.jpg'),fit: BoxFit.cover,),
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('${index+1} item',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                                Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Text('Stock ${index+2} ',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,color: Colors.green),),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Text('\$${index+2}0 ',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,decoration:TextDecoration.lineThrough,color: Colors.black45),),
-                                    Text('\$${index+1}0 ',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
-                                  ],
-                                )
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 95,
+                                width: double.infinity,
+                                child: Image(image: AssetImage('assets/acc/ad/ad3.jpg'),fit: BoxFit.cover,),
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('${index+1} item',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                                    child: Text('Stock ${index+2} ',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,color: Colors.green),),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
 
-                              ],
-                            ),
+                                      Text('\$${index+2}0 ',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,decoration:TextDecoration.lineThrough,color: Colors.black45),),
+                                      Text('\$${index+1}0 ',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
+                                    ],
+                                  )
+
+                                ],
+                              ),
 
 
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     );

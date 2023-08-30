@@ -1,3 +1,4 @@
+import 'package:autoprohub/Provider%20module/Add%20vehicles/rent/rent%20vehicle.dart';
 import 'package:autoprohub/Provider%20module/Add%20vehicles/used/add%20car.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import '../../user_module/home/feedback.dart';
 import '../../user_module/home/feedbackmodel.dart';
 import '../../user_module/login/start.dart';
 import '../../user_module/profile/editprofile.dart';
+import '../Add vehicles/used/add bike.dart';
 class Phome extends StatefulWidget {
   const Phome({super.key});
 
@@ -204,7 +206,7 @@ class _PhomeState extends State<Phome> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 7,
+                height: 10,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -237,7 +239,7 @@ class _PhomeState extends State<Phome> {
                   children: [
                     Container(
                       height: 60,
-                      width: 173,
+                      width: 170,
                      decoration: BoxDecoration(
                      ),
                       child: ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.white),onPressed: (){
@@ -247,15 +249,19 @@ class _PhomeState extends State<Phome> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Icon(CupertinoIcons.car,color: Colors.black,size: 33,),
-                          Text('ADD CARS',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600),)
+                          Text('ADD CARS',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,),)
                         ],
                       )
                       )
                     ),
                     Container(
                       height: 60,
-                      width: 173,
-                        child: ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.white),onPressed: (){},
+                      width: 170,
+                        child: ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                            onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>add_usedbike()));
+
+                            },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -273,8 +279,11 @@ class _PhomeState extends State<Phome> {
                   children: [
                     Container(
                       height: 60,
-                      width: 173,
-                        child: ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.white),onPressed: (){},
+                      width: 170,
+                        child: ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                            onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>add_rental()));
+                            },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -284,7 +293,7 @@ class _PhomeState extends State<Phome> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text('ADD RENTAL',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600),),
-                                    Text('VEHICLES',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600),),
+                                    Text('VEHICLES',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,fontSize:10 ),),
                                   ],
                                 )
                               ],
@@ -292,7 +301,7 @@ class _PhomeState extends State<Phome> {
                         )                    ),
                     Container(
                       height: 60,
-                      width: 173,
+                      width: 170,
                         child: ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.white),onPressed: (){},
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -305,7 +314,7 @@ class _PhomeState extends State<Phome> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text('ADD ',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600),),
-                                      Text('ACCESSORIES',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600),),
+                                      Text('ACCESSORIES',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,fontSize:10 ),),
                                     ],
                                   ),
                                 )                              ],
@@ -330,12 +339,17 @@ class _PhomeState extends State<Phome> {
                     itemBuilder: (context,index){
                       var starcount=int.parse(feedbackmodel[index]['star']);
                       return Card(
-                        elevation: 5,
+                        color: Colors.cyan,
+                        elevation: 3,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)
+                        ),
                         child: Container(
                           height: 170,
                           width: 315,
                           decoration: BoxDecoration(
-                            color: Colors.white38,
+                              color: Colors.white70,
+                              borderRadius: BorderRadius.circular(15)
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -359,6 +373,7 @@ class _PhomeState extends State<Phome> {
                               ),
                               Divider(
                                 thickness: 2,
+                                color: Colors.white,
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -378,7 +393,7 @@ class _PhomeState extends State<Phome> {
                                       scrollDirection:Axis.horizontal,
                                       itemCount: 5,
                                       itemBuilder: (context,index){
-                                        return (index<starcount)? Icon(Icons.star,color: Colors.yellow,):Icon(Icons.star_border);
+                                        return (index<starcount)? Icon(Icons.star,color: Colors.amber,):Icon(Icons.star_border,color: Colors.amber,);
                                       }),
                                 ),
                               )
@@ -391,22 +406,46 @@ class _PhomeState extends State<Phome> {
               ),
               SizedBox(height: 10,),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
                 child: TextField(
                   maxLines: 8 ,
                   keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(
                       hintText: 'Enter your feedback here....',
-                      border: OutlineInputBorder()
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red,width: 5),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: Colors.black26,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(
+                              color: Colors.black
+                          )
+                      )
                   ),
                 ),
               ),
-              Center(child: Container(
-                  height: 40,
-                  width: 150,
-                  child: ElevatedButton(style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff283673),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                  ),onPressed: (){}, child: Text('Submit')))),
+              Center(
+                  child: Card(
+                    color: Colors.cyan,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)
+                    ),
+                    child: Container(
+                        height: 50,
+                        width: 150,
+                        child: ElevatedButton(style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white38,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15))
+                        ),onPressed: (){}, child: Text('Submit',style: TextStyle(color: Colors.white,fontSize: 16),))),
+                  )),
               SizedBox(height: 20,),
 
 

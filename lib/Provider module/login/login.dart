@@ -1,5 +1,6 @@
 import 'package:autoprohub/Provider%20module/Home/home.dart';
 import 'package:autoprohub/Provider%20module/login/register.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../user_module/forgotpassword/forgot.dart';
@@ -12,6 +13,7 @@ class Plogin extends StatefulWidget {
 }
 
 class _PloginState extends State<Plogin> {
+  var visible=true;
   TextEditingController emailctrl=TextEditingController();
   TextEditingController passctrl=TextEditingController();
   @override
@@ -111,65 +113,75 @@ class _PloginState extends State<Plogin> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    height: 150,
+                    height: 250,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                        image: DecorationImage(image: AssetImage('assets/logins/l5.png'),fit: BoxFit.contain)
+                        image: DecorationImage(image: AssetImage('assets/logins/provider.jpeg'),fit: BoxFit.cover)
                     ),
                   ),
                 ),
-                SizedBox(height: 40,),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Color(0xffD9D9D9)
-                    ),
-                    child: TextFormField(
-                      controller: emailctrl,
-                      decoration: InputDecoration(
-                        label: Text('E-mail'),
-                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                SizedBox(height: 20,),
+                SizedBox(
+                  width: 360,
+                  child: TextFormField(
+                    controller: emailctrl,
+                    decoration: InputDecoration(
+                      label: Text('E-mail'),
+                      suffixIcon: Icon(CupertinoIcons.person,color: Colors.black,),
+                      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
 
-                      ),
                     ),
                   ),
                 ),
-                SizedBox(height: 5,),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Color(0xffD9D9D9)
-                    ),
-                    child: TextFormField(
-                      controller: passctrl,
-                      decoration: InputDecoration(
-                        label: Text('Password'),
-                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                SizedBox(height: 20,),
+                SizedBox(
+                  width: 360,
+                  child: TextFormField(
+                    obscureText: visible,
+                    controller: passctrl,
+                    decoration: InputDecoration(
+                      suffixIcon: IconButton(onPressed: (){
+                        setState(() {
+                          visible=!visible;
+                          print(visible);
+                        });
+                      }, icon:(visible)?Icon(Icons.visibility_off, color: Colors.black,):Icon(Icons.visibility,color: Colors.black,)),
 
-                      ),
+                      label: Text('Password'),
+                      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+
                     ),
                   ),
                 ),
                 SizedBox(height: 10,),
-                Container(
-                    height: 50,
-                    width: 395,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Color(0xff283673)
-                    ),
-                    child: ElevatedButton(style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff283673),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
-                    ),onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Phome()));
-                    }, child: Text('Sign In',style: TextStyle(color: Colors.white),),)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                      height: 60,
+                      width: 320,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Color(0xff283673)
+                      ),
+                      child: ElevatedButton(style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xff283673),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+                      ),onPressed: () {
+                        // if(emailctrl.text.isNotEmpty && passctrl.text.isNotEmpty){
+                        //   setState(() {
+                        //     senddata();
+                        //   }
+                        //   );
+                        // }
+                        // else{
+                        //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('All feilds required')));
+                        // }
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Phome()));
+
+                      }, child: Text('Sign In',style: TextStyle(color: Colors.white,fontWeight:FontWeight.bold,fontSize: 18),),)
+                  ),
                 ),
                 SizedBox(height: 7,),
                 TextButton(onPressed: (){

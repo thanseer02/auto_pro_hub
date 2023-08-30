@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-class add_usedcar extends StatefulWidget {
-  const add_usedcar({super.key});
+class add_usedbike extends StatefulWidget {
+  const add_usedbike({super.key});
 
   @override
-  State<add_usedcar> createState() => _add_usedcarState();
+  State<add_usedbike> createState() => _add_usedbikeState();
 }
 
-class _add_usedcarState extends State<add_usedcar> {
+class _add_usedbikeState extends State<add_usedbike> {
   TextEditingController vnamectrl=TextEditingController();
   TextEditingController brandname=TextEditingController();
   TextEditingController fueltype=TextEditingController();
@@ -20,7 +20,7 @@ class _add_usedcarState extends State<add_usedcar> {
   TextEditingController price=TextEditingController();
   List<XFile> selectedImage = [];
   String _selectedItem = 'Petrol';
-  List<String> _items = ['Petrol', 'Deisel', 'Hybrid', 'Electric','CNG',];
+  List<String> _items = ['Petrol', 'Electric',];
   PageController pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _add_usedcarState extends State<add_usedcar> {
         leading: IconButton(onPressed: (){
           Navigator.pop(context);
         }, icon: Icon(Icons.arrow_back),color: Colors.black,),
-        title: Text('Add Car',style: TextStyle(color: Colors.black45),),
+        title: Text('Add Bike',style: TextStyle(color: Colors.black45),),
       ),
       backgroundColor: Colors.white,
       body: Container(
@@ -45,17 +45,17 @@ class _add_usedcarState extends State<add_usedcar> {
                 child: Container(
                   height: 250,
                   width: 350,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Colors.black
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.black26
                   ),
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.black26
-                ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      IconButton(onPressed: (){},  
+                      IconButton(onPressed: (){},
                           icon: Icon(Icons.add_a_photo_outlined,size: 40,)),
                       Text('Add Image')
                     ],
@@ -290,18 +290,18 @@ class _add_usedcarState extends State<add_usedcar> {
               ),
 
               SizedBox(height: 15,),
-               Center(
-                 child: Container(
-                   height: 50,
-                     width: 150,
-                     child: ElevatedButton(
-                         style: ElevatedButton.styleFrom(
-                             backgroundColor: Colors.green.shade400,
-                             shape: RoundedRectangleBorder(
-                                 borderRadius: BorderRadius.circular(15))),
-                         onPressed: (){},
-                         child: Text('Submit',style: TextStyle(color: Colors.white,fontSize: 18),))),
-               ),
+              Center(
+                child: Container(
+                    height: 50,
+                    width: 150,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green.shade400,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15))),
+                        onPressed: (){},
+                        child: Text('Submit',style: TextStyle(color: Colors.white,fontSize: 18),))),
+              ),
 
               SizedBox(height: 20,)
             ],

@@ -51,11 +51,12 @@ class _profile2State extends State<profile2> {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 22.5,top: 20),
+                  padding: const EdgeInsets.all(10.0),
                   child: Container(
-                    height: 32,
-                    width: 145,
+                    height: 40,
+                    width: 150,
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         color: Colors.white
                       )
@@ -66,11 +67,12 @@ class _profile2State extends State<profile2> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 22.5,top: 20),
+                  padding: const EdgeInsets.all(10.0),
                   child: Container(
-                    height: 32,
-                    width: 145,
+                    height: 40,
+                    width: 150,
                     decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
                         border: Border.all(
                             color: Colors.white
                         )
@@ -87,12 +89,12 @@ class _profile2State extends State<profile2> {
             ),
             SizedBox(height: 10,),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text('Contact Info',style: TextStyle(color: Colors.white,fontSize: 14)),
             ),
             SizedBox(height: 10,),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -103,7 +105,7 @@ class _profile2State extends State<profile2> {
             ),
             SizedBox(height: 10,),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -69,49 +69,37 @@ class _loginState extends State<login> {
                ),
               ),
               SizedBox(height: 70,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                 decoration: BoxDecoration(
-                   borderRadius: BorderRadius.circular(15),
-                   color: Colors.white
-                 ),
-                  child: TextFormField(
-                    controller: emailctrl,
-                    decoration: InputDecoration(
-                      label: Text('E-mail'),
-                      suffixIcon: Icon(CupertinoIcons.person,color: Colors.black,),
-                      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+              SizedBox(
+                width: 360,
+                child: TextFormField(
+                  controller: emailctrl,
+                  decoration: InputDecoration(
+                    label: Text('E-mail'),
+                    suffixIcon: Icon(CupertinoIcons.person,color: Colors.black,),
+                    enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                    focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
 
-                    ),
                   ),
                 ),
               ),
-              SizedBox(height: 5,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white
-                  ),
-                  child: TextFormField(
-                    obscureText: visible,
-                    controller: passctrl,
-                    decoration: InputDecoration(
-                        suffixIcon: IconButton(onPressed: (){
-                  setState(() {
-                  visible=!visible;
-                  print(visible);
-                  });
-                  }, icon:(visible)?Icon(Icons.visibility_off, color: Colors.black,):Icon(Icons.visibility,color: Colors.black,)),
+              SizedBox(height: 20,),
+              SizedBox(
+                width: 360,
+                child: TextFormField(
+                  obscureText: visible,
+                  controller: passctrl,
+                  decoration: InputDecoration(
+                      suffixIcon: IconButton(onPressed: (){
+                setState(() {
+                visible=!visible;
+                print(visible);
+                });
+                }, icon:(visible)?Icon(Icons.visibility_off, color: Colors.black,):Icon(Icons.visibility,color: Colors.black,)),
 
-                      label: Text('Password'),
-                      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                    label: Text('Password'),
+                    enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                    focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
 
-                    ),
                   ),
                 ),
               ),

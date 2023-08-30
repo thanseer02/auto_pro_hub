@@ -404,7 +404,7 @@ class _AccesseroisState extends State<Accesserois> {
           children: [
             Text('Car Accessories',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 17,color: Colors.black54),),
             IconButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>car()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Car()));
             }, icon: Icon(CupertinoIcons.arrow_right,color: Colors.black54))
           ],
         ),
@@ -421,7 +421,7 @@ class _AccesseroisState extends State<Accesserois> {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: (){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>car()));
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Car()));
 
               },
               child: Padding(

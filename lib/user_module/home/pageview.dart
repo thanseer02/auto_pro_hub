@@ -39,7 +39,7 @@ class PageviewExample extends StatelessWidget {
                 height: 150,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage('assets/home/of2.png'),fit: BoxFit.fill),
+                  image: DecorationImage(image: AssetImage('assets/home/of2.png'),fit: BoxFit.cover),
                   color: Color(0xffADDDFB),
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -51,7 +51,7 @@ class PageviewExample extends StatelessWidget {
                 height: 150,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage('assets/home/off1.png'),fit: BoxFit.fill),
+                  image: DecorationImage(image: AssetImage('assets/home/off1.png'),fit: BoxFit.cover),
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),

@@ -1,4 +1,5 @@
 
+import 'package:autoprohub/user_module/Accesseroris/Accessesries.dart';
 import 'package:autoprohub/user_module/services/usedcars/usedcars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -352,32 +353,37 @@ class _servicesState extends State<services> {
              ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Card(
-                 elevation: 7,
-                 child: Stack(
-                   children: [
-                     Container(
-                       height: 200,
-                       width: MediaQuery.of(context).size.width,
-                       decoration: BoxDecoration(
+               child: InkWell(
+                 onTap: (){
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Accesserois()));
+                 },
+                 child: Card(
+                   elevation: 7,
+                   child: Stack(
+                     children: [
+                       Container(
+                         height: 200,
+                         width: MediaQuery.of(context).size.width,
+                         decoration: BoxDecoration(
 
-                           image: DecorationImage(image: AssetImage('assets/services/ua.png'),fit: BoxFit.cover)
-                       ),
-                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 155),
-                      child: Container(
-                           height: 45,
-                           width: MediaQuery.of(context).size.width,
-                           color: Colors.white70,
-                           child:  Center(child: Text('ACCESSORIES',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 17),)),
+                             image: DecorationImage(image: AssetImage('assets/services/ua.png'),fit: BoxFit.cover)
                          ),
-                    ),
+                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 155),
+                        child: Container(
+                             height: 45,
+                             width: MediaQuery.of(context).size.width,
+                             color: Colors.white70,
+                             child:  Center(child: Text('ACCESSORIES',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 17),)),
+                           ),
+                      ),
 
 
-                   ],
+                     ],
+                   ),
+
                  ),
-
                ),
              ),
 
