@@ -53,7 +53,7 @@ class _bike_acState extends State<bike_ac> {
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>detail(
                             name: '${index+1} item',
                             price: '\$${index+1}0 ',
-                            image: 'assets/acc/ad/ad3.jpg',
+                            image: 'assets/acc/ad/ex1.jpeg',
                             stock: ' Available',
                             offer: '${index+2}0%',
                             rate: '${index+2}00',
@@ -79,7 +79,7 @@ class _bike_acState extends State<bike_ac> {
                               Container(
                                 height: 95,
                                 width: double.infinity,
-                                child: Image(image: AssetImage('assets/acc/ad/ad3.jpg'),fit: BoxFit.cover,),
+                                child: Image(image: AssetImage('assets/acc/ad/ex1.jpeg'),fit: BoxFit.contain,),
                               ),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,

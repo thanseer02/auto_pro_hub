@@ -1,5 +1,10 @@
+import 'package:autoprohub/Provider%20module/Add%20accessories/add_accessories.dart';
 import 'package:autoprohub/Provider%20module/Add%20vehicles/rent/rent%20vehicle.dart';
 import 'package:autoprohub/Provider%20module/Add%20vehicles/used/add%20car.dart';
+import 'package:autoprohub/Provider%20module/my%20accessories/my%20accssories.dart';
+import 'package:autoprohub/Provider%20module/my%20bike/my%20bike.dart';
+import 'package:autoprohub/Provider%20module/my%20cars/my%20cars.dart';
+import 'package:autoprohub/Provider%20module/my%20order/my%20order.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -75,7 +80,48 @@ class _PhomeState extends State<Phome> {
                   },
                   child: ListTile(
                     leading: Icon(Icons.home),
-                    title: Text('HOME'),
+                    title: Text('Home'),
+
+                  ),
+                ),
+                Divider(
+                  thickness: 2,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) =>my_car()));
+                  },
+                  child: ListTile(
+                    leading: Icon(CupertinoIcons.car_detailed),
+                    title: Text('My Cars'),
+
+                  ),
+                ),
+                Divider(
+                  thickness: 2,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) =>my_bike()));
+                  },
+                  child: ListTile(
+                    leading: Icon(Icons.directions_bike_outlined),
+                    title: Text('My Bikes'),
+                  ),
+                ),
+                Divider(
+                  thickness: 2,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) =>my_accessories()));
+                  },
+                  child: ListTile(
+                    leading: Icon(CupertinoIcons.shopping_cart),
+                    title: Text('My Accessories'),
 
                   ),
                 ),
@@ -89,7 +135,7 @@ class _PhomeState extends State<Phome> {
                   },
                   child: ListTile(
                     leading: Icon(Icons.settings_suggest_outlined),
-                    title: Text('SERVICES'),
+                    title: Text('Service'),
 
                   ),
                 ),
@@ -97,13 +143,13 @@ class _PhomeState extends State<Phome> {
                   thickness: 2,
                 ),
                 InkWell(
-                  // onTap: () {
-                  //   Navigator.push(context,
-                  //       MaterialPageRoute(builder: (context) => complaints()));
-                  // },
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => my_order()));
+                  },
                   child: ListTile(
                     leading: Icon(Icons.shopping_cart),
-                    title: Text('MY ORDERS'),
+                    title: Text('My orders'),
 
 
                   ),
@@ -118,7 +164,7 @@ class _PhomeState extends State<Phome> {
                   },
                   child: ListTile(
                     leading: Icon(Icons.comment),
-                    title: Text('FEEDBACKS'),
+                    title: Text('Feedback'),
 
                   ),
                 ),
@@ -302,7 +348,9 @@ class _PhomeState extends State<Phome> {
                     Container(
                       height: 60,
                       width: 170,
-                        child: ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.white),onPressed: (){},
+                        child: ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.white),onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>add_accessories()));
+                        },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

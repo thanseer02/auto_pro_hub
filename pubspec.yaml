@@ -75,6 +75,10 @@ flutter:
     - assets/acc/ad/
     - assets/acc/logo/
     - assets/
+    - assets/acc_detail/
+    - assets/pcar_dt/
+    - assets/pbike_dt/
+    - assets/pacc_dt/
 
 
   #   - images/a_dot_ham.jpeg

@@ -349,7 +349,7 @@ class _AccesseroisState extends State<Accesserois> {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: (){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>bike_ac()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>bike_ac()));
               },
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -421,7 +421,7 @@ class _AccesseroisState extends State<Accesserois> {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: (){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Car()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Car()));
 
               },
               child: Padding(

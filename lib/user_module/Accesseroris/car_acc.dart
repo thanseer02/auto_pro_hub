@@ -53,7 +53,7 @@ class _CarState extends State<Car> {
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>detail(
                           name: '${index+1} item',
                           price: '\$${index+1}0 ',
-                          image: 'assets/acc/ad/ad3.jpg',
+                          image: 'assets/acc/ad/spl1.jpeg',
                           stock: ' Available',
                           offer: '${index+2}0%',
                           rate: '${index+2}00',
@@ -80,7 +80,7 @@ class _CarState extends State<Car> {
                               Container(
                                 height: 95,
                                 width: double.infinity,
-                                child: Image(image: AssetImage('assets/acc/ad/ad3.jpg'),fit: BoxFit.cover,),
+                                child: Image(image: AssetImage('assets/acc/ad/spl1.jpeg'),fit: BoxFit.cover,),
                               ),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
