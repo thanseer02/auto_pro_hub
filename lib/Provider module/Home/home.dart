@@ -7,7 +7,6 @@ import 'package:autoprohub/Provider%20module/my%20cars/my%20cars.dart';
 import 'package:autoprohub/Provider%20module/my%20order/my%20order.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../user_module/home/feedback.dart';
 import '../../user_module/home/feedbackmodel.dart';
 import '../../user_module/login/start.dart';
@@ -29,10 +28,7 @@ class _PhomeState extends State<Phome> {
           elevation: 0,
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
-          leading: Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: Icon(CupertinoIcons.car_detailed,color: Colors.black,size: 25,)
-          ),
+          leading: Image(image: AssetImage('assets/l2.png'),fit: BoxFit.cover,),
           title: Padding(
             padding: const EdgeInsets.only(top: 17),
             child: Text('AUTO PRO HUB',style: TextStyle(color: Colors.black54,fontSize: 25),),
@@ -294,7 +290,7 @@ class _PhomeState extends State<Phome> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(CupertinoIcons.car,color: Colors.black,size: 33,),
+                          Icon(CupertinoIcons.car_detailed,color: Colors.black,size: 33,),
                           Text('ADD CARS',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,),)
                         ],
                       )

@@ -31,7 +31,8 @@ class _my_accessoriesState extends State<my_accessories> {
                       id:index+1 )));
                 },
                 child: ListTile(
-                  leading: Text(' ${index+1}',style: TextStyle(fontSize: 14,color: Colors.black38),),
+                  // leading: Text(' ${index+1}',style: TextStyle(fontSize: 14,color: Colors.black38),),
+                  leading: Image(image: AssetImage('assets/pacc_dt/hd.jpeg'),fit: BoxFit.contain,),
                   title: Text('Headlight ${index+1}',style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
                   subtitle: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,7 +40,7 @@ class _my_accessoriesState extends State<my_accessories> {
                       Text('GVAA ',style: TextStyle(fontSize: 15)),
                     ],
                   ),
-                  trailing:Text('\$${index+1}00/hr',style: TextStyle(fontSize: 14,color: Colors.black38) ),
+                  trailing:Text('\$${index+1}000',style: TextStyle(fontSize: 14,color: Colors.black38) ),
                 ),
               );
             },

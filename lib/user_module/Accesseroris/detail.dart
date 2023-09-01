@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'order/order_product.dart';
+
 class detail extends StatefulWidget {
   detail(
       {super.key,
@@ -175,7 +177,7 @@ class _detailState extends State<detail> {
                     width: 200,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red
+                            backgroundColor: Colors.red.shade900
                         ),
                         onPressed: () {}, child:  Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -190,9 +192,11 @@ class _detailState extends State<detail> {
                     width: 150,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue
+                          backgroundColor: Colors.indigo
                         ),
-                        onPressed: () {}, child:  Row(
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>order_product()));
+                        }, child:  Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Icon(Icons.shopping_bag_outlined,color: Colors.white,),

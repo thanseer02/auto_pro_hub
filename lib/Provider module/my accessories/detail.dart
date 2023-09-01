@@ -17,7 +17,7 @@ class _car_detailState extends State<car_detail> {
         leading: IconButton(onPressed: (){
           Navigator.pop(context);
         }, icon: Icon(Icons.arrow_back),color: Colors.black,),
-        title: Text('X ${widget.id}',style: TextStyle(color: Colors.black45),),
+        title: Text('Headlight ${widget.id}',style: TextStyle(color: Colors.black45),),
         actions: [
           IconButton(onPressed: (){}, icon: Icon(Icons.edit,color: Colors.black45,)),
           IconButton(onPressed: (){}, icon: Icon(Icons.delete_rounded,color: Colors.red,)),
@@ -45,7 +45,7 @@ class _car_detailState extends State<car_detail> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-                height: 150,
+                height: 250,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(
@@ -55,28 +55,44 @@ class _car_detailState extends State<car_detail> {
                 child: Column(
                   children: [
                     SizedBox(height: 10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text('Model',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.grey)),
-                        Text('X ${widget.id}',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.grey)),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Model',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.grey)),
+                          Text('Headlight ${widget.id}',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.black)),
+                        ],
+                      ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text('Brand',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.grey)),
-                        Text('BMW',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.grey)),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Brand',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.grey)),
+                          Text('GVAA',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.black)),
+                        ],
+                      ),
                     ),
                     SizedBox(height: 10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text('Price',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.grey)),
-                        Text('\$${widget.id}00/hr',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.green),),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Price',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.grey)),
+                          Text('\$${widget.id}000',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.green),),
+                        ],
+                      ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Lorem Ipsum is simply dummy text of the'
+                          ' printing and typesetting industry. Lorem Ipsum has'
+                          'sheets containing Lorem Ipsum passages, and more recently with desktop',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.grey),),
+                    )
+
 
                   ],
                 )),

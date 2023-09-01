@@ -31,15 +31,16 @@ class _my_bikeState extends State<my_bike> {
                       id:index+1 )));
                 },
                 child: ListTile(
-                  leading: Text(' ${index+1}',style: TextStyle(fontSize: 14,color: Colors.black38),),
+                  // leading: Text(' ${index+1}',style: TextStyle(fontSize: 14,color: Colors.black38),),
+                  leading: Image(image: AssetImage('assets/pbike_dt/bk.jpeg')),
                   title: Text('Street ${index+1}',style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
                   subtitle: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('harley davidson ',style: TextStyle(fontSize: 15)),
+                      Text('Harley Davidson ',style: TextStyle(fontSize: 15)),
                     ],
                   ),
-                  trailing:Text('\$${index+2}00/hr',style: TextStyle(fontSize: 14,color: Colors.black38) ),
+                  trailing:Text('\$${index+2}00/hr',style: TextStyle(fontSize: 14,color: Colors.green) ),
                 ),
               );
             },

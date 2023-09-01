@@ -45,7 +45,7 @@ class _car_detailState extends State<car_detail> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-                height: 150,
+                height: 250,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(
@@ -55,28 +55,45 @@ class _car_detailState extends State<car_detail> {
                 child: Column(
                   children: [
                     SizedBox(height: 10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text('Model',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.grey)),
-                        Text('Street ${widget.id}',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.grey)),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text('Brand',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.grey)),
-                        Text('harley davidson',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.grey)),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Model',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.grey)),
+                          Text('Street ${widget.id}',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.black)),
+                        ],
+                      ),
                     ),
                     SizedBox(height: 10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text('Price',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.grey)),
-                        Text('\$${widget.id+1}00/hr',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.green),),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Brand',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.grey)),
+                          Text('harley davidson',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.black)),
+                        ],
+                      ),
                     ),
+                    SizedBox(height: 10,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Price',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.grey)),
+                          Text('\$${widget.id+1}00/hr',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.green),),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Lorem Ipsum is simply dummy text of the'
+                          ' printing and typesetting industry. Lorem Ipsum has'
+                          'sheets containing Lorem Ipsum passages, and more recently with desktop',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.grey),),
+                    )
 
                   ],
                 )),

@@ -37,7 +37,7 @@ class _homeState extends State<home> {
               elevation: 0,
               backgroundColor: Colors.white,
           foregroundColor: Colors.black,
-              leading: Image(image: AssetImage('assets/logo.jpeg')),
+              leading: Image(image: AssetImage('assets/l2.png')),
               title: Padding(
                 padding: const EdgeInsets.only(top: 17),
                 child: Text('AUTO PRO HUB',style: TextStyle(color: Colors.black54,fontSize: 25),),

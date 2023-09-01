@@ -79,6 +79,7 @@ flutter:
     - assets/pcar_dt/
     - assets/pbike_dt/
     - assets/pacc_dt/
+    - assets/payment/
 
 
   #   - images/a_dot_ham.jpeg
