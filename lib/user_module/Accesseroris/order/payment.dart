@@ -185,7 +185,7 @@ class _paymentState extends State<payment> {
                           backgroundColor: Colors.orange[400]
                       ),
                       onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>payment()));
+                        // Navigator.push(context, MaterialPageRoute(builder: (context)=>payment()));
                       }, child: Text('Order',style: TextStyle(color: Colors.white,fontSize: 18),)),
                 ),
               ),

@@ -1,5 +1,6 @@
 
 import 'package:autoprohub/user_module/Accesseroris/Accessesries.dart';
+import 'package:autoprohub/user_module/Accesseroris/order/cart.dart';
 import 'package:autoprohub/user_module/home/pageview.dart';
 import 'package:autoprohub/navbar.dart';
 
@@ -43,11 +44,17 @@ class _homeState extends State<home> {
                 child: Text('AUTO PRO HUB',style: TextStyle(color: Colors.black54,fontSize: 25),),
               ),
               actions: [
-
               ],
 
         ),
         ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.white,
+          elevation: 10,
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>cart()));
+          },
+          child: Icon(CupertinoIcons.cart,color: Colors.amber,),),
         endDrawer: Drawer(
           width: 280,
           shadowColor: Colors.black,
@@ -272,7 +279,7 @@ class _homeState extends State<home> {
                         children: [
                           IconButton(onPressed: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>rental()));
-                          }, icon: Icon(Icons.car_rental_sharp,size: 40,)),
+                          }, icon: Icon(Icons.car_rental_sharp,size: 40,color: Colors.black54)),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Text('RENTAL',style: TextStyle(fontWeight: FontWeight.w700,),),
@@ -289,7 +296,7 @@ class _homeState extends State<home> {
                         children: [
                           IconButton(onPressed: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>usedcars()));
-                          }, icon: Icon(CupertinoIcons.car_detailed,size: 40,)),
+                          }, icon: Icon(CupertinoIcons.car_detailed,size: 40,color: Colors.black54)),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Text('CARS',style: TextStyle(fontWeight: FontWeight.w700),),
@@ -304,7 +311,7 @@ class _homeState extends State<home> {
                         children: [
                           IconButton(onPressed: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>Accesserois()));
-                          }, icon: Icon(CupertinoIcons.bag,size: 40,)),
+                          }, icon: Icon(CupertinoIcons.bag,size: 40,color: Colors.black54)),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Text('ACCESSORIES',style: TextStyle(fontWeight: FontWeight.w700),),
@@ -319,7 +326,7 @@ class _homeState extends State<home> {
                         children: [
                           IconButton(onPressed: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>usedbikes()));
-                          }, icon: Icon(Icons.motorcycle_rounded,size: 40,)),
+                          }, icon: Icon(Icons.motorcycle_rounded,size: 40,color: Colors.black54,)),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Text('BIKES',style: TextStyle(fontWeight: FontWeight.w700),),

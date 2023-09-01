@@ -1,51 +1,38 @@
-
-import 'package:autoprohub/user_module/home/pageview.dart';
-import 'package:autoprohub/navbar.dart';
-import 'package:autoprohub/user_module/login/start.dart';
-
+import 'package:autoprohub/user_module/rental/car/rentcarmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../../navbar.dart';
+import 'bikemodels.dart';
+import 'detail_page.dart';
+class premium extends StatefulWidget {
+  const premium({super.key});
 
-import '../bikes/usedbikes.dart';
-import '../home/feedback.dart';
-import '../login/login.dart';
-import '../profile/editprofile.dart';
-import '../rental/renthome.dart';
-import '../services/services.dart';
-import '../services/usedcars/usedcars.dart';
-
-class detail_page_bike extends StatefulWidget {
-  detail_page_bike({Key? key,required this.img,required this.name,required this.dis,required this.rate,required this.cc,required this.milege,required this.disc,required this.year}) : super(key: key);
-  var img,name,dis,cc,milege,disc,year,rate;
   @override
-  State<detail_page_bike> createState() => _detail_page_bikeState();
+  State<premium> createState() => _premiumState();
 }
 
-class _detail_page_bikeState extends State<detail_page_bike> {
+class _premiumState extends State<premium> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: PreferredSize(preferredSize: Size.fromHeight(60),
-        child:   AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-          leading: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(onPressed: (){
-              Navigator.pop(context);
-            }, icon: Icon(Icons.arrow_back)),
-          ),
-          title: Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text('AUTO PRO HUB',style: TextStyle(color: Colors.black54,fontSize: 25),),
-          ),
-          actions: [
-
-          ],
-
+      appBar:  AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: IconButton(onPressed: (){
+            Navigator.pop(context);
+          }, icon: Icon(Icons.arrow_back)),
         ),
+        title: Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Text('AUTO PRO HUB',style: TextStyle(color: Colors.black54,fontSize: 25),),
+        ),
+        actions: [
+
+        ],
+
       ),
       // endDrawer: Drawer(
       //   width: 280,
@@ -239,150 +226,84 @@ class _detail_page_bikeState extends State<detail_page_bike> {
       // ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 12,right: 12,top: 15),
+              child: TextField(
+                decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white60,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+
+                    ),
+                    focusedBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                    prefixIcon: Icon(CupertinoIcons.search),
+                    hintText: 'Search here'
+                ),
+              ),
+            ),
+            SizedBox(height: 20,),
             Container(
-              height: 300,
-              width: MediaQuery.of(context).size.width,
-             decoration: BoxDecoration(
-               image: DecorationImage(image: AssetImage('assets/bikes/${widget.img}'),fit: BoxFit.cover)
-             ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(widget.name,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Text(widget.dis,style: TextStyle(fontSize: 15),),
-                  SizedBox(height: 10,),
-                  Text(widget.rate,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
-                ],
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: Text('Specification',style: TextStyle(color: Colors.black54,fontSize: 18),),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Card(
-                  elevation: 30,
-                  child: Container(
-                    height: 80,
-                    width: 70,
-                    decoration: BoxDecoration(),
+              height: MediaQuery.of(context).size.height,
+              child: GridView.builder(
+                itemCount: usedbikemodel1.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                itemBuilder: (BuildContext context, int index) {
+                  return InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>detail_page_bike(img: usedbikemodel1[index]['img'],
+                          name: usedbikemodel1[index]['name'],
+                          dis: usedbikemodel1[index]['dis'],
+                          rate: usedbikemodel1[index]['rate'],
+                          cc: usedbikemodel1[index]['cc'],
+                          milege: usedbikemodel1[index]['milege'],
+                          disc: usedbikemodel1[index]['disc'],
+                          year: usedbikemodel1[index]['year'])));
+                    },
                     child: Padding(
-                      padding: const EdgeInsets.all(7.0),
-                      child: Column(
-                        children: [
-                          Container(
-                              height: 30,
-                              width: 30,
-                              child: Image(image: AssetImage('assets/detailpage/eng.png'),fit: BoxFit.cover,)),
-                          Text(widget.cc)
-                        ],
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 130,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              color: Colors.black45
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Container(
+                              height: 100,
+                              width: double.infinity,
+                              child: Image(image: AssetImage('assets/bikes/${usedbikemodel1[index]['img']}'),fit: BoxFit.cover,),
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('${usedbikemodel1[index]['name']}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                                  child: Text('${usedbikemodel1[index]['rate']} ',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,color: Colors.green),),
+                                ),
+
+                              ],
+                            ),
+
+
+                          ],
+                        ),
                       ),
                     ),
-
-                  ),
-                ),
-                Card(
-                  elevation: 30,
-                  child: Container(
-                    height: 80,
-                    width: 70,
-                    decoration: BoxDecoration(),
-                    child: Padding(
-                      padding: const EdgeInsets.all(7.0),
-                      child: Column(
-                        children: [
-                          Container(
-                              height: 30,
-                              width: 27,
-                              child: Image(image: AssetImage('assets/detailpage/speed.png'),fit: BoxFit.contain,)),
-                          SizedBox(height: 0,),
-                          Text(widget.milege)
-                        ],
-                      ),
-                    ),
-
-                  ),
-                ),
-                Card(
-                  elevation: 30,
-                  child: Container(
-                    height: 80,
-                    width: 70,
-                    decoration: BoxDecoration(),
-                    child: Padding(
-                      padding: const EdgeInsets.all(7.0),
-                      child: Column(
-                        children: [
-                          Container(
-                              height: 30,
-                              width: 27,
-                              child: Image(image: AssetImage('assets/detailpage/disc.png'),fit: BoxFit.contain,)),
-                          SizedBox(height: 0,),
-                          Text(widget.disc)
-                        ],
-                      ),
-                    ),
-
-                  ),
-                ),
-                Card(
-                  elevation: 30,
-                  child: Container(
-                    height: 80,
-                    width: 70,
-                    decoration: BoxDecoration(),
-                    child: Padding(
-                      padding: const EdgeInsets.all(7.0),
-                      child: Column(
-                        children: [
-                          Container(
-                              height: 30,
-                              width: 25,
-                              child: Image(image: AssetImage('assets/detailpage/yr.png'),fit: BoxFit.contain,)),
-                          SizedBox(height: 0,),
-                          Text(widget.year)
-                        ],
-                      ),
-                    ),
-
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 15,),
-            Center(
-              child: Container(
-                  height: 60,
-                  width: 300,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Color(0xff283673)
-                  ),
-                  child: ElevatedButton(style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff283673),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
-                  ),onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>nav()));
-                  }, child: Text('Book Now',style: TextStyle(color: Colors.white,fontSize: 18),),)
-              ),
-            ),
-            SizedBox(height: 15,),
-
-
-
+                  );
+                },),
+            )
           ],
         ),
       ),
+
+
     );
   }
 }

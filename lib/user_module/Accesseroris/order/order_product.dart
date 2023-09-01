@@ -86,7 +86,7 @@ class _order_productState extends State<order_product> {
                   padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 8),
                   child: TextFormField(
                     decoration: InputDecoration(
-                        label: Text('Add ALternative Phone Number'),
+                        label: Text('Add Alternative Phone Number'),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10)
                         ),

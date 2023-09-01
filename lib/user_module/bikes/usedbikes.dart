@@ -1,5 +1,8 @@
 
 import 'package:autoprohub/navbar.dart';
+import 'package:autoprohub/user_module/bikes/bike.dart';
+import 'package:autoprohub/user_module/bikes/premium.dart';
+import 'package:autoprohub/user_module/bikes/scooter.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -282,7 +285,9 @@ class _usedbikesState extends State<usedbikes> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Premium Bikes',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 17,color: Colors.black54),),
-                  IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.arrow_right,color: Colors.black54))
+                  IconButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>premium()));
+                  }, icon: Icon(CupertinoIcons.arrow_right,color: Colors.black54))
                 ],
               ),
             ),
@@ -362,7 +367,10 @@ class _usedbikesState extends State<usedbikes> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Bikes',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 17,color: Colors.black54),),
-                  IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.arrow_right,color: Colors.black54))
+                  IconButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>bikes()));
+
+                  }, icon: Icon(CupertinoIcons.arrow_right,color: Colors.black54))
                 ],
               ),
             ),
@@ -442,7 +450,10 @@ class _usedbikesState extends State<usedbikes> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Scooter',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 17,color: Colors.black54),),
-                  IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.arrow_right,color: Colors.black54))
+                  IconButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>scooter()));
+
+                  }, icon: Icon(CupertinoIcons.arrow_right,color: Colors.black54))
                 ],
               ),
             ),
