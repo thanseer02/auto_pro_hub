@@ -1,3 +1,5 @@
+import 'package:autoprohub/user_module/Accesseroris/order/cart.dart';
+import 'package:autoprohub/user_module/Accesseroris/order/confirm%20order.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +56,7 @@ class _detailState extends State<detail> {
                       child: Text(
                         widget.name,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 25),
+                             fontSize: 22),
                       ),
                     ),
 
@@ -150,7 +152,7 @@ class _detailState extends State<detail> {
                       child: Text(
                         widget.discripton,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
+                             fontSize: 16),
                       ),
                     ),
 
@@ -175,11 +177,17 @@ class _detailState extends State<detail> {
                 children: [
                   SizedBox(
                     width: 200,
+                    height: 50,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)
+                            ),
                             backgroundColor: Colors.red.shade900
                         ),
-                        onPressed: () {}, child:  Row(
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>cart()));
+                        }, child:  Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Icon(Icons.shopping_cart,color: Colors.white,),
@@ -187,15 +195,18 @@ class _detailState extends State<detail> {
                       ],
                     )),
                   ),
-
                   SizedBox(
                     width: 150,
+                    height: 50,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)
+                          ),
                           backgroundColor: Colors.indigo
                         ),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>order_product()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>confirm_order()));
                         }, child:  Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -207,6 +218,9 @@ class _detailState extends State<detail> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 10,
+            )
           ],
         ),
       ),

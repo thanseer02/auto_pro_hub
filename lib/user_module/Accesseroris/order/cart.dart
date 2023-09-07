@@ -9,6 +9,24 @@ class cart extends StatefulWidget {
 }
 
 class _cartState extends State<cart> {
+  int quantity=1;
+  late int total;
+
+  int add(int price){
+    setState(() {
+      quantity=quantity+1;
+      price=price*quantity;
+    });
+
+    return price;
+  }
+  int sub(int price){
+    setState(() {
+      quantity=quantity-1;
+      price=price*quantity;
+    });
+    return price;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +72,7 @@ class _cartState extends State<cart> {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 5),
             child: Container(
-              height: 250,
+              height: 300,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -67,7 +85,6 @@ class _cartState extends State<cart> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    IconButton(onPressed: (){}, icon: Icon(Icons.delete,color: Colors.red,)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -87,6 +104,35 @@ class _cartState extends State<cart> {
                               child: Text('Brand ${index+1}',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.black45),),
 
                             ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                IconButton(onPressed: (){
+                                  setState(() {
+                                    total=add(index+1);
+                                    print(total);
+                                  });
+                                  }, icon:Icon( Icons.add,color: Colors.black45)),
+                                Container(
+                                  height:30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(3),
+                                    border: Border.all(
+                                      color: Colors.black45
+                                    )
+                                  ),
+                                  child: Center(child: Text('${quantity}',style: TextStyle(fontSize: 18),)),
+                                ),
+                                IconButton(onPressed: (){
+                                  setState(() {
+                                    total=sub(index);
+
+                                  });
+                                }, icon:Icon( CupertinoIcons.minus,color: Colors.black45)),
+
+                              ],
+                            )
 
                           ],
                         ),
@@ -94,17 +140,17 @@ class _cartState extends State<cart> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 15),
-                              child: Text('\$${index+1}000',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.black54,decoration: TextDecoration.lineThrough),),
+                              child: Text('\$${index+1}000',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.black54,decoration: TextDecoration.lineThrough),),
 
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 8),
-                              child: Text('\%${index+3}0 Off/-',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.green[300],),),
+                              child: Text('${index+3}0\% Off/-',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.green[300],),),
 
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 5),
-                              child: Text('\$${index+1}00',style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.green,),),
+                              child: Text('\ ${total}',style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.green,),),
 
                             ),
 
@@ -113,6 +159,14 @@ class _cartState extends State<cart> {
                         )
                       ],
                     ),
+                    Divider(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        TextButton(onPressed: (){}, child:Text('Remove')),
+                        TextButton(onPressed: (){}, child:Text('Buy this now')),
+                      ],
+                    )
                   ],
                 ),
               ),
