@@ -1,8 +1,13 @@
+import 'dart:io';
+import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../user_module/Connection/connect.dart';
 class add_usedcar extends StatefulWidget {
-  const add_usedcar({super.key});
+   add_usedcar({super.key,required this.type});
+  var type;
 
   @override
   State<add_usedcar> createState() => _add_usedcarState();
@@ -11,17 +16,65 @@ class add_usedcar extends StatefulWidget {
 class _add_usedcarState extends State<add_usedcar> {
   TextEditingController vnamectrl=TextEditingController();
   TextEditingController brandname=TextEditingController();
-  TextEditingController fueltype=TextEditingController();
   TextEditingController cc=TextEditingController();
   TextEditingController milege=TextEditingController();
   TextEditingController kmdriven=TextEditingController();
   TextEditingController vyear=TextEditingController();
-  TextEditingController ryear=TextEditingController();
   TextEditingController price=TextEditingController();
   List<XFile> selectedImage = [];
   String _selectedItem = 'Petrol';
   List<String> _items = ['Petrol', 'Deisel', 'Hybrid', 'Electric','CNG',];
+  String _selectedsegment = 'Sedan';
+  List<String> segment = ['Sedan', 'Suv', 'Compact Suv', 'Hatchback',];
   PageController pageController = PageController(initialPage: 0);
+
+  File? _img;
+  final picker = ImagePicker();
+
+  Future chooseimage() async{
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _img = File(pickedImage!.path);
+    });
+  }
+  Future sendData(File imageFile) async {
+    print(vnamectrl.text);
+    print(_selectedItem);
+    print(brandname.text);
+    print(milege.text);
+    print(cc.text);
+    print(kmdriven.text);
+    print(vyear.text);
+    print(price.text);
+    print(_selectedsegment);
+    print(widget.type);
+
+
+
+var uri = Uri.parse("${Con.url}/Provider module/add_usedcar.php");
+
+var request = http.MultipartRequest("POST",uri);
+request.fields['vehicle_name'] = vnamectrl.text;
+request.fields['brand_name'] = brandname.text;
+request.fields['fuel'] = _selectedItem;
+request.fields['segment'] = _selectedsegment;
+request.fields['milege'] = milege.text.toString();
+request.fields['enginecc'] = cc.text.toString();
+request.fields['vehicleyear'] = vyear.text.toString();
+request.fields['kmdriven'] = kmdriven.text.toString();
+request.fields['price'] = price.text.toString();
+request.fields['type'] = widget.type;
+
+var pic = await await http.MultipartFile.fromPath("img", imageFile.path);
+ request.files.add(pic);
+
+ var response = await request.send();
+
+
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,14 +105,19 @@ class _add_usedcarState extends State<add_usedcar> {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.black26
                 ),
-                  child: Column(
+                  child:
+                  _img == null?
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      IconButton(onPressed: (){},  
+                      IconButton(onPressed: (){
+                        chooseimage();
+                      },
                           icon: Icon(Icons.add_a_photo_outlined,size: 40,)),
                       Text('Add Image')
                     ],
-                  ),
+                  ):
+                     Image(image: FileImage(_img!),fit: BoxFit.cover,)
 
                 ),
               ),
@@ -199,8 +257,49 @@ class _add_usedcarState extends State<add_usedcar> {
                       }).toList(),
                     ),
                   ),
+                  Center(
+                    child: DropdownButton<String>(
+                      value: _selectedsegment,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _selectedsegment = newValue!;
+                        });
+                      },
+                      dropdownColor: Colors.white, // Change the background color here
+
+                      items: segment.map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                            child: Text(value,style: TextStyle(color: Colors.black,fontSize: 16),),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+
+
+                ],
+              ),
+              SizedBox(height: 10,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
                   SizedBox(
-                    width: 150,
+                    width: 140,
+                    child: TextFormField(
+                      controller: milege,
+                      decoration: InputDecoration(
+                        hintText: 'Milege',
+                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 140,
                     child: TextFormField(
                       controller: cc,
                       decoration: InputDecoration(
@@ -211,6 +310,8 @@ class _add_usedcarState extends State<add_usedcar> {
                     ),
                   ),
 
+
+
                 ],
               ),
               SizedBox(height: 10,),
@@ -219,11 +320,11 @@ class _add_usedcarState extends State<add_usedcar> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: 120,
+                    width: 140,
                     child: TextFormField(
-                      controller: milege,
+                      controller: vyear,
                       decoration: InputDecoration(
-                        hintText: 'Milege',
+                        hintText: 'Vehicle Year',
                         enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
                         focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
                       ),
@@ -241,36 +342,6 @@ class _add_usedcarState extends State<add_usedcar> {
                     ),
                   ),
 
-
-                ],
-              ),
-              SizedBox(height: 10,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 120,
-                    child: TextFormField(
-                      controller: vyear,
-                      decoration: InputDecoration(
-                        hintText: 'Vehicle Year',
-                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 150,
-                    child: TextFormField(
-                      controller: ryear,
-                      decoration: InputDecoration(
-                        hintText: 'Registration Year',
-                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                      ),
-                    ),
-                  ),
 
 
                 ],
@@ -296,10 +367,15 @@ class _add_usedcarState extends State<add_usedcar> {
                      width: 150,
                      child: ElevatedButton(
                          style: ElevatedButton.styleFrom(
-                             backgroundColor: Colors.green.shade400,
+                             backgroundColor: Color(0xff283673),
                              shape: RoundedRectangleBorder(
                                  borderRadius: BorderRadius.circular(15))),
-                         onPressed: (){},
+                         onPressed: (){
+                           sendData(_img!);
+                           setState(() {
+
+                           });
+                         },
                          child: Text('Submit',style: TextStyle(color: Colors.white,fontSize: 18),))),
                ),
 

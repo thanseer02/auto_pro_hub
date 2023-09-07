@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../user_module/Connection/connect.dart';
 class add_usedbike extends StatefulWidget {
-  const add_usedbike({super.key});
+   add_usedbike({super.key,required this.type});
+  var type;
 
   @override
   State<add_usedbike> createState() => _add_usedbikeState();
@@ -21,7 +26,56 @@ class _add_usedbikeState extends State<add_usedbike> {
   List<XFile> selectedImage = [];
   String _selectedItem = 'Petrol';
   List<String> _items = ['Petrol', 'Electric',];
+  String _selectedsegment = 'Scooter';
+  List<String> segment = ['Scooter', 'Bike', 'Premium Bikes', ];
   PageController pageController = PageController(initialPage: 0);
+  File? _img;
+  final picker = ImagePicker();
+
+  Future chooseimage() async{
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _img = File(pickedImage!.path);
+    });
+  }
+  Future sendData(File imageFile) async {
+    print(vnamectrl.text);
+    print(_selectedItem);
+    print(brandname.text);
+    print(milege.text);
+    print(cc.text);
+    print(kmdriven.text);
+    print(vyear.text);
+    print(price.text);
+    print(_selectedsegment);
+    print(widget.type);
+
+
+
+    var uri = Uri.parse("${Con.url}/Provider module/usedbike.php");
+
+    var request = http.MultipartRequest("POST",uri);
+    request.fields['vehicle_name'] = vnamectrl.text;
+    request.fields['brand_name'] = brandname.text;
+    request.fields['fuel'] = _selectedItem;
+    request.fields['segment'] = _selectedsegment;
+    request.fields['milege'] = milege.text.toString();
+    request.fields['enginecc'] = cc.text.toString();
+    request.fields['vehicleyear'] = vyear.text.toString();
+    request.fields['kmdriven'] = kmdriven.text.toString();
+    request.fields['price'] = price.text.toString();
+    request.fields['type'] = widget.type;
+
+    var pic = await await http.MultipartFile.fromPath("img", imageFile.path);
+    request.files.add(pic);
+
+    var response = await request.send();
+
+
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,14 +106,21 @@ class _add_usedbikeState extends State<add_usedbike> {
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.black26
                   ),
-                  child: Column(
+                  child:
+                  _img == null?
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      IconButton(onPressed: (){},
+                      IconButton(onPressed: (){
+                        chooseimage();
+
+                      },
                           icon: Icon(Icons.add_a_photo_outlined,size: 40,)),
                       Text('Add Image')
                     ],
-                  ),
+                  ):
+                  Image(image: FileImage(_img!),fit: BoxFit.cover,)
+
 
                 ),
               ),
@@ -199,17 +260,28 @@ class _add_usedbikeState extends State<add_usedbike> {
                       }).toList(),
                     ),
                   ),
-                  SizedBox(
-                    width: 150,
-                    child: TextFormField(
-                      controller: cc,
-                      decoration: InputDecoration(
-                        hintText: 'Engine CC',
-                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                      ),
+                  Center(
+                    child: DropdownButton<String>(
+                      value: _selectedsegment,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _selectedsegment = newValue!;
+                        });
+                      },
+                      dropdownColor: Colors.white, // Change the background color here
+
+                      items: segment.map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                            child: Text(value,style: TextStyle(color: Colors.black,fontSize: 16),),
+                          ),
+                        );
+                      }).toList(),
                     ),
                   ),
+
 
                 ],
               ),
@@ -261,17 +333,16 @@ class _add_usedbikeState extends State<add_usedbike> {
                     ),
                   ),
                   SizedBox(
-                    width: 150,
+                    width: 140,
                     child: TextFormField(
-                      controller: ryear,
+                      controller: cc,
                       decoration: InputDecoration(
-                        hintText: 'Registration Year',
+                        hintText: 'Engine CC',
                         enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
                         focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
                       ),
                     ),
                   ),
-
 
                 ],
               ),
@@ -299,7 +370,12 @@ class _add_usedbikeState extends State<add_usedbike> {
                             backgroundColor: Colors.green.shade400,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15))),
-                        onPressed: (){},
+                        onPressed: (){
+                          sendData(_img!);
+                          setState(() {
+
+                          });
+                        },
                         child: Text('Submit',style: TextStyle(color: Colors.white,fontSize: 18),))),
               ),
 

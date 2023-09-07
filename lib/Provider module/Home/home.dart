@@ -285,7 +285,7 @@ class _PhomeState extends State<Phome> {
                      decoration: BoxDecoration(
                      ),
                       child: ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.white),onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>add_usedcar()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>add_usedcar(type: 'car',)));
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -301,7 +301,7 @@ class _PhomeState extends State<Phome> {
                       width: 170,
                         child: ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>add_usedbike()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>add_usedbike(type: 'bike',)));
 
                             },
                             child: Row(
@@ -382,66 +382,69 @@ class _PhomeState extends State<Phome> {
                     itemCount: feedbackmodel.length,
                     itemBuilder: (context,index){
                       var starcount=int.parse(feedbackmodel[index]['star']);
-                      return Card(
-                        color: Colors.cyan,
-                        elevation: 3,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15)
-                        ),
-                        child: Container(
-                          height: 170,
-                          width: 315,
-                          decoration: BoxDecoration(
-                              color: Colors.white70,
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          // color: Colors.cyan,
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)
                           ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: CircleAvatar(
-                                      radius: 20,
-                                      child:  ClipOval(child: Image.asset('assets/home/${feedbackmodel[index]['img']}',fit: BoxFit.contain,)),
-                                      backgroundColor: Colors.white38,
+                          child: Container(
+                            height: 170,
+                            width: 315,
+                            decoration: BoxDecoration(
+                                color: Colors.white70,
+                                borderRadius: BorderRadius.circular(15)
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 20,
+                                        child:  ClipOval(child: Image.asset('assets/home/${feedbackmodel[index]['img']}',fit: BoxFit.contain,)),
+                                        backgroundColor: Colors.white38,
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('${feedbackmodel[index]['name']}'),
-                                  ),
-                                ],
-                              ),
-                              Divider(
-                                thickness: 2,
-                                color: Colors.white,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text('${feedbackmodel[index]['heading']}',style: TextStyle(
-                                    fontWeight: FontWeight.bold
-                                ),),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text('${feedbackmodel[index]['dis']}'),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  height: 20,
-                                  child: ListView.builder(
-                                      scrollDirection:Axis.horizontal,
-                                      itemCount: 5,
-                                      itemBuilder: (context,index){
-                                        return (index<starcount)? Icon(Icons.star,color: Colors.amber,):Icon(Icons.star_border,color: Colors.amber,);
-                                      }),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text('${feedbackmodel[index]['name']}'),
+                                    ),
+                                  ],
                                 ),
-                              )
-                            ],
+                                Divider(
+                                  thickness: 2,
+                                  color: Colors.white,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text('${feedbackmodel[index]['heading']}',style: TextStyle(
+                                      fontWeight: FontWeight.bold
+                                  ),),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text('${feedbackmodel[index]['dis']}'),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    height: 20,
+                                    child: ListView.builder(
+                                        scrollDirection:Axis.horizontal,
+                                        itemCount: 5,
+                                        itemBuilder: (context,index){
+                                          return (index<starcount)? Icon(Icons.star,color: Colors.amber,):Icon(Icons.star_border,color: Colors.amber,);
+                                        }),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       );
@@ -477,15 +480,16 @@ class _PhomeState extends State<Phome> {
               ),
               Center(
                   child: Card(
-                    color: Colors.cyan,
-                    shape: RoundedRectangleBorder(
+                    color: Color(0xff283673),
+
+                shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)
                     ),
                     child: Container(
                         height: 50,
                         width: 150,
                         child: ElevatedButton(style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white38,
+                            backgroundColor: Color(0xff283673),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15))
                         ),onPressed: (){}, child: Text('Submit',style: TextStyle(color: Colors.white,fontSize: 16),))),

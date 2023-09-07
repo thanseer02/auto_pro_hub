@@ -1,4 +1,3 @@
-import 'package:autoprohub/user_module/rental/car/detail.dart';
 import 'package:flutter/material.dart';
 
 import 'detail.dart';

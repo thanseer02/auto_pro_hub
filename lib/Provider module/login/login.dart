@@ -173,7 +173,7 @@ class _PloginState extends State<Plogin> {
                             borderRadius: BorderRadius.circular(30),
                         ),
                         child: ElevatedButton(style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red[400],
+                            backgroundColor: Color(0xff283673),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
                         ),onPressed: () {
                           // if(emailctrl.text.isNotEmpty && passctrl.text.isNotEmpty){

@@ -1,8 +1,13 @@
+import 'dart:io';
+import 'package:http/http.dart'as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../user_module/Connection/connect.dart';
 class add_rentbike extends StatefulWidget {
-  const add_rentbike({super.key});
+   add_rentbike({super.key,required this.type});
+  var type;
 
   @override
   State<add_rentbike> createState() => _add_rentbikeState();
@@ -11,17 +16,48 @@ class add_rentbike extends StatefulWidget {
 class _add_rentbikeState extends State<add_rentbike> {
   TextEditingController vnamectrl=TextEditingController();
   TextEditingController brandname=TextEditingController();
-  TextEditingController fueltype=TextEditingController();
-  TextEditingController cc=TextEditingController();
-  TextEditingController milege=TextEditingController();
-  TextEditingController kmdriven=TextEditingController();
-  TextEditingController vyear=TextEditingController();
-  TextEditingController ryear=TextEditingController();
   TextEditingController price=TextEditingController();
-  List<XFile> selectedImage = [];
-  // String _selectedItem = 'Petrol';
-  // List<String> _items = ['Petrol', 'Electric',];
-  // PageController pageController = PageController(initialPage: 0);
+
+  PageController pageController = PageController(initialPage: 0);
+
+  File? _img;
+  final picker = ImagePicker();
+
+  Future chooseimage() async{
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _img = File(pickedImage!.path);
+    });
+  }
+  Future sendData(File imageFile) async {
+    print(vnamectrl.text);
+    print(brandname.text);
+
+
+    print(price.text);
+
+    print(widget.type);
+
+
+
+    var uri = Uri.parse("${Con.url}/Provider module/add_rentvehicle.php");
+
+    var request = http.MultipartRequest("POST",uri);
+    request.fields['vehicle_name'] = vnamectrl.text;
+    request.fields['brand_name'] = brandname.text;
+    request.fields['price'] = price.text.toString();
+    request.fields['type'] = widget.type;
+
+    var pic = await await http.MultipartFile.fromPath("img", imageFile.path);
+    request.files.add(pic);
+
+    var response = await request.send();
+    print(response.statusCode);
+
+
+
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,96 +79,32 @@ class _add_rentbikeState extends State<add_rentbike> {
             children: [
               Center(
                 child: Container(
-                  height: 250,
-                  width: 350,
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Colors.black12
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.black26
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(onPressed: (){},
-                          icon: Icon(Icons.add_a_photo_outlined,size: 40,)),
-                      Text('Add Image')
-                    ],
-                  ),
+                    height: 250,
+                    width: 350,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: Colors.black
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.black26
+                    ),
+                    child:
+                    _img == null?
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(onPressed: (){
+                          chooseimage();
+                        },
+                            icon: Icon(Icons.add_a_photo_outlined,size: 40,)),
+                        Text('Add Image')
+                      ],
+                    ):
+                    Image(image: FileImage(_img!),fit: BoxFit.cover,)
 
                 ),
               ),
-              // Row(
-              //   children: [
-              //     SizedBox(width: 8,),
-              //     Container(
-              //       height: 230,
-              //       width: 220,
-              //       decoration: BoxDecoration(
-              //         borderRadius: BorderRadius.circular(15),
-              //         color: Colors.blue
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: const EdgeInsets.all(8.0),
-              //       child: Column(
-              //         children: [
-              //           Container(
-              //             height: 110,
-              //             width: 150,
-              //             decoration: BoxDecoration(
-              //                 borderRadius: BorderRadius.circular(15),
-              //                 color: Colors.blue
-              //             ),
-              //           ),
-              //           SizedBox(height: 8,),
-              //           Container(
-              //             height: 110,
-              //             width: 150,
-              //             decoration: BoxDecoration(
-              //                 borderRadius: BorderRadius.circular(15),
-              //                 color: Colors.blue
-              //             ),
-              //           ),
-              //         ],
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              // Row(
-              //   children: [
-              //     SizedBox(width: 8,),
-              //
-              //     Container(
-              //       height: 110,
-              //       width: 120,
-              //       decoration: BoxDecoration(
-              //           borderRadius: BorderRadius.circular(15),
-              //           color: Colors.blue
-              //       ),
-              //     ),
-              //     SizedBox(width: 8,),
-              //
-              //     Container(
-              //       height: 110,
-              //       width: 120,
-              //       decoration: BoxDecoration(
-              //           borderRadius: BorderRadius.circular(15),
-              //           color: Colors.blue
-              //       ),
-              //     ),
-              //     SizedBox(width: 8,),
-              //     Container(
-              //       height: 110,
-              //       width: 120,
-              //       decoration: BoxDecoration(
-              //           borderRadius: BorderRadius.circular(15),
-              //           color: Colors.blue
-              //       ),
-              //     ),
-              //   ],
-              // ),
+
               SizedBox(height: 20,),
 
               // Padding(
@@ -162,119 +134,7 @@ class _add_rentbikeState extends State<add_rentbike> {
                   ),
                 ),
               ),
-              // SizedBox(height: 10,),
-              // // SizedBox(
-              // //   width: 340,
-              // //   child: TextFormField(
-              // //     controller: fueltype,
-              // //     decoration: InputDecoration(
-              // //       hintText: 'Fuel type',
-              // //       enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              // //       focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              // //     ),
-              // //   ),
-              // // ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   children: [
-              //     Center(
-              //       child: DropdownButton<String>(
-              //         value: _selectedItem,
-              //         onChanged: (newValue) {
-              //           setState(() {
-              //             _selectedItem = newValue!;
-              //           });
-              //         },
-              //         dropdownColor: Colors.white, // Change the background color here
-              //
-              //         items: _items.map<DropdownMenuItem<String>>((String value) {
-              //           return DropdownMenuItem<String>(
-              //             value: value,
-              //             child: Padding(
-              //               padding: const EdgeInsets.symmetric(horizontal: 18.0),
-              //               child: Text(value,style: TextStyle(color: Colors.black,fontSize: 16),),
-              //             ),
-              //           );
-              //         }).toList(),
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: 150,
-              //       child: TextFormField(
-              //         controller: cc,
-              //         decoration: InputDecoration(
-              //           hintText: 'Engine CC',
-              //           enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              //           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              //         ),
-              //       ),
-              //     ),
-              //
-              //   ],
-              // ),
-              // SizedBox(height: 10,),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   children: [
-              //     SizedBox(
-              //       width: 120,
-              //       child: TextFormField(
-              //         controller: milege,
-              //         decoration: InputDecoration(
-              //           hintText: 'Milege',
-              //           enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              //           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              //         ),
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: 140,
-              //       child: TextFormField(
-              //         controller: kmdriven,
-              //         decoration: InputDecoration(
-              //           hintText: 'KM Driven',
-              //           enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              //           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              //         ),
-              //       ),
-              //     ),
-              //
-              //
-              //   ],
-              // ),
-              // SizedBox(height: 10,),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   children: [
-              //     SizedBox(
-              //       width: 120,
-              //       child: TextFormField(
-              //         controller: vyear,
-              //         decoration: InputDecoration(
-              //           hintText: 'Vehicle Year',
-              //           enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              //           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              //         ),
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: 150,
-              //       child: TextFormField(
-              //         controller: ryear,
-              //         decoration: InputDecoration(
-              //           hintText: 'Registration Year',
-              //           enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              //           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              //         ),
-              //       ),
-              //     ),
-              //
-              //
-              //   ],
-              // ),
+
               SizedBox(height: 10,),
 
               SizedBox(
@@ -300,7 +160,9 @@ class _add_rentbikeState extends State<add_rentbike> {
                             backgroundColor: Colors.teal,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15))),
-                        onPressed: (){},
+                        onPressed: (){
+                          sendData(_img!);
+                        },
                         child: Text('Submit',style: TextStyle(color: Colors.white,fontSize: 18),))),
               ),
 
